@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.PostMapper">
+	<select id="getAllServices" resultType="com.daimao.model.Post">
+    	 SELECT * FROM bim_service ORDER BY date DESC
+	</select>
+	
+	<select id="getAllRequirements" resultType="com.daimao.model.Post">
+    	 SELECT * FROM bim_requirement ORDER BY date DESC
+	</select>
+	
+	<select id="getTopRequirements" resultType="com.daimao.model.Post">
+    	 SELECT * FROM bim_requirement ORDER BY date DESC LIMIT #{limit}
+	</select>
+	
+	<select id="getTopServices" resultType="com.daimao.model.Post">
+    	 SELECT * FROM bim_service ORDER BY date DESC LIMIT #{limit}
+	</select>
+	
+	<insert id="addService">
+		INSERT INTO bim_service (title, content, price, date, author) VALUES (#{title}, #{content}, #{price}, #{date}, #{author})
+	</insert>
+	
+	<insert id="addRequirement">
+		INSERT INTO bim_requirement (title, content, price, date, author) VALUES (#{title}, #{content}, #{price}, #{date}, #{author})
+	</insert>
+	
+	<select id="getService" resultType="com.daimao.model.Post">
+    	 SELECT * FROM bim_service where id = #{id}
+	</select>
+	
+	<select id="getRequirement" resultType="com.daimao.model.Post">
+    	 SELECT * FROM bim_requirement where id = #{id}
+	</select>
+	
+	<select id="getComment" resultType="com.daimao.model.Comment">
+    	 SELECT * FROM bim_service_comment where serviceId = #{id}
+	</select>
+	
+	<select id="getRequirementComments" resultType="com.daimao.model.Comment">
+    	 SELECT * FROM bim_requirement_comment where requirementId = #{id}
+	</select>
+	
+	<insert id="addComment">
+		INSERT INTO bim_service_comment (serviceId, content, date, author) VALUES (#{serviceId}, #{content}, #{date}, #{author})
+	</insert>
+	
+	<insert id="addRequirementComment">
+		INSERT INTO bim_requirement_comment (requirementId, content, date, author) VALUES (#{requirementId}, #{content}, #{date}, #{author})
+	</insert>
+</mapper>

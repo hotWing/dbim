@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.ProductMapper">
+
+	<select id="countProducts" resultType="java.lang.Integer">
+    	 SELECT count(1) FROM PRODUCT
+	</select>
+   
+   <select id="getAllProducts" resultType="com.daimao.model.Product">
+    	 SELECT * FROM PRODUCT LIMIT ${startRow},${pageSize} 
+   </select>
+   
+  <select id="getProduct" parameterType="map" resultType="com.daimao.model.Product">
+         SELECT product.id,product.name,familyType,length, width,height,publishDate,edition,discription,link,installInstruction,
+				product.certification,document,video,code,mainMaterial,secMaterial,design,production,weight,similarProduct,
+                attachment,sccClass,IFCType,manufacturerID,thumbDir,downloadDir,buildingType,function,manufacturer.name as manufacturer
+        FROM product join manufacturer on manufacturer.id = product.manufacturerID
+        <if test="id != null and id != ''">  
+    	    WHERE product.id = #{id}
+        </if>
+   </select>
+   
+   <select id="getManufacturer" parameterType="map" resultType="com.daimao.model.Manufacturer">
+        SELECT * 
+        FROM manufacturer
+        where id = #{id}   
+   </select>
+   
+   <select id="getHighlights" parameterType="map" resultType="com.daimao.model.Product">
+       SELECT * 
+       FROM product ORDER BY publishDate DESC LIMIT 6
+   </select>
+   
+   <select id="getPopular" parameterType="map" resultType="com.daimao.model.Product">
+       SELECT * 
+       FROM product ORDER BY downloads DESC LIMIT 6
+   </select> 
+   
+   <select id="getProductsBySearch" parameterType="map" resultType="com.daimao.model.Product">
+       SELECT product.id,product.name,familyType,length, width,height,publishDate,edition,discription,link,installInstruction,
+				product.certification,document,video,code,mainMaterial,secMaterial,design,production,weight,similarProduct,
+                attachment,sccClass,IFCType,manufacturerID,thumbDir,downloadDir,buildingType,function,manufacturer.name as manufacturer
+        FROM product join manufacturer on manufacturer.id = product.manufacturerID
+       	WHERE 1=1
+        <if test="key != null and key != '' and key != '关键词'">  
+    	    and product.name like '%${key}%'
+        </if>
+        <if test="manufacturer != null and manufacturer != '' and manufacturer != '选择品牌'">
+            and manufacturer.name = #{manufacturer}
+        </if>
+        <if test="familyType != null and familyType != '' ">
+            and familyType = #{familyType}
+        </if>
+        <if test="mainMaterial != null and mainMaterial != '' ">
+            and mainMaterial = #{mainMaterial}
+        </if>
+        <if test="buildingType != null and buildingType != ''">
+            and buildingType = #{buildingType}
+        </if>
+        <if test="function != null and function != ''">
+            and function = #{function}
+        </if>
+        
+        LIMIT ${startRow},${pageSize} 
+   </select> 
+   
+   
+   <select id="countProductsBySearch" resultType="java.lang.Integer">
+    	 SELECT count(1)
+        FROM product join manufacturer on manufacturer.id = product.manufacturerID
+    	 
+    	 WHERE 1=1
+        <if test="key != null and key != '' and key != '关键词'">  
+    	    and product.name like '%${key}%'
+        </if>
+        <if test="manufacturer != null and manufacturer != '' and manufacturer != '选择品牌'">
+            and manufacturer.name = #{manufacturer}
+        </if>
+        <if test="familyType != null and familyType != '' ">
+            and familyType = #{familyType}
+        </if>
+        <if test="mainMaterial != null and mainMaterial != '' ">
+            and mainMaterial = #{mainMaterial}
+        </if>
+        <if test="buildingType != null and buildingType != ''">
+            and buildingType = #{buildingType}
+        </if>
+        <if test="function != null and function != ''">
+            and function = #{function}
+        </if>
+	</select>
+   
+   <insert id="addProduct" parameterType="map">
+   	INSERT INTO product (id, name, familyType, manufacturerID, publishDate,thumbDir,downloadDir) 
+   	             VALUES (#{id}, #{name}, #{familyType}, #{manufacturerID}, #{publishDate}, #{thumbDir}, #{downloadDir})
+   </insert>
+   
+</mapper>
