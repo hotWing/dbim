@@ -2,6 +2,115 @@
 	word-break:break-all;
 }
 
+
+/*   background-repeat: no-repeat; */
+/*   background-position: center 20%; */
+/*   background-size: cover; */
+  
+.navbar-default {
+  width:100%;
+  position:absolute;
+  border:0px;
+  border-radius: 0px;
+  background-color:rgba(255,255,255,0.5);
+}
+
+
+.navbar-default .navbar-brand {
+	padding: 30px 50px;
+  	color: #fff;
+  	height:80px;
+}
+
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff;	
+  padding: 30px 50px;
+  border-left:1px solid #fff;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li.active>a{
+	color: #fff;
+	background-color:rgb(53,184,143);
+}
+
+.navbar-default .navbar-right>li>a {
+  border-left:0px;
+}
+
+
+.navbar-toggle {
+  margin-top: 23px;
+  border:0px;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color:rgb(53,184,143);
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+.button-primary{
+	color:#fff;
+	background-color:#35b88f;
+}
+
+.navbar-default .navbar-nav>li>.button-primary{
+	margin-top: 23px;
+	margin-left:50px;
+}
+
+.button-primary:focus,
+.button-primary:hover{
+	color:#fff;
+	background-color:#38c798;
+}
+
+.navbar-default .navbar-nav>li>p{
+  	color: #fff;	
+  	padding: 30px 0px;
+  	margin-bottom:0px;
+}
+
+
+.img-with-text>.bg-img{
+	width:100%;
+	min-height:700px;
+}
+
+
+.img-with-text>.nav-arrow-img{
+	bottom:0px;
+}
+
+.img-with-text>p{
+	position:absolute;
+ 	top:200px;
+ 	left: 0;
+    right: 0;
+	font-size:60px;
+	color:#fff;
+}
+
+.img-with-text>.nav-btn{
+	position:absolute;
+ 	top:500px;
+ 	left: 0;
+    right: 0;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:20px;
+    padding:20px;
+    background-color:#fff;
+    width:300px;
+  	border-radius: 50px;
+  	color:#777;
+}
+
 .product-item {
 	padding-left:5px;
 	padding-right:5px;
@@ -80,4 +189,16 @@
 
 .top-service:hover {
 	background-color:#cccccc;
+}
+
+.bar {
+	position:absolute;
+	top:320px;
+	left:0;
+    right:0;
+	margin-left:auto;
+    margin-right:auto;
+	background-color:#fff;
+	height:2px;
+	width:400px;
 }

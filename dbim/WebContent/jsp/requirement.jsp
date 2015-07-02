@@ -238,7 +238,6 @@
 			    	    });
 		    		}
 		    	})
-		    		
 		    	$(".post").click(function(){
 	    	        location.href = baseUrl + "/servicecenter/postcenter/getRequirement/"+$("#requirementId", this).val();
 		    	})
