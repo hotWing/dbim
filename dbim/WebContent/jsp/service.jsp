@@ -3,48 +3,12 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="zh-CN">
 	<head>
-    	<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<title>DBIM</title>
-    	<link href="${request.getContextPath()}/dbim/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="${request.getContextPath()}/dbim/css/common.css" rel="stylesheet">
+   	    <jsp:include page="/jsp/head.jsp"/>
 	</head>
 	<body>
-    	<nav class="navbar navbar-inverse" style="margin-bottom:0px">
-    		<div class="container">
-    			<div class="navbar-header">
-			    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-			        	<span class="sr-only">Toggle navigation</span>
-			        	<span class="icon-bar"></span>
-			        	<span class="icon-bar"></span>
-			        	<span class="icon-bar"></span>
-			    	</button>
-			    	<a class="navbar-brand" href="${request.getContextPath()}/dbim/servicecenter/postcenter/index">DBIM</a>
-			    </div>
-			    
-			    <div class="collapse navbar-collapse" id="navbar-collapse">
-			      <ul class="nav navbar-nav">
-			        <li class="active"><a href="${request.getContextPath()}/dbim/servicecenter/postcenter/bimservice">服务</a></li>
-			        <li><a href="${request.getContextPath()}/dbim/servicecenter/postcenter/bimrequirement">需求</a></li>
-			        <li><a href="${request.getContextPath()}/dbim/servicecenter/productcenter/cloud">云族库</a></li>
-			      </ul>
-			   
-			      <ul class="nav navbar-nav navbar-right">
-			      
-				      <c:choose>  
-						   <c:when test="${empty username}">
-						   		<li><a href="#" data-toggle="modal" data-target="#loginModal">登录</a></li>
-						   </c:when>  
-						   <c:otherwise>   
-						   		<li><a>${username}</a></li>
-						   		<li><a id="logoutBt" href="#">退出</a></li>
-						   </c:otherwise>  
-					  </c:choose>
-			      </ul>
-			    </div>
-    		</div>
-    	</nav>
+    	<jsp:include page="/jsp/navbar.jsp"/>
+    	<div class="main-img text-center"><p>BIM服务</p></div>
+    	
     	
     	<div class="container" style="margin-top:15px">
     		<b>分类</b><br>
@@ -161,8 +125,6 @@
 		  </div>
 		</div>
 
-	    <script src="${request.getContextPath()}/dbim/js/jquery-1.11.1.min.js"></script>
-	    <script src="${request.getContextPath()}/dbim/js/bootstrap.min.js"></script>
 	    <script src="${request.getContextPath()}/dbim/js/ckeditor.js"></script>
 	    
 	    <script>
@@ -173,48 +135,6 @@
 		    	
 	    		var baseUrl = "${pageContext.request.contextPath}"
 	    		
-		    	$("#submitBt").click(function(){
-		    		var username = $("#username").val()
-		    		var password = $("#password").val()
-
-		    		$.ajax({
-		    	        url: baseUrl + "/servicecenter/usercenter/login",
-		    	        type: "post",
-		    	       
-		    	        data:  {username: username,
-		    	        		password: password},
-		    	        		
-		    	        dataType: 'text',		
-		    	        success: function(msg,textStatus){
-		    	        			if("sucess"==msg) {
-		    	        				alert("登录成功");
-		    	        				location.reload();
-		    	        			}
-		    	        			else 
-		    	        				alert("用户名或密码错误");
-		    	        				
-		    		        	},
-		            	error: function(XMLHttpRequest, error, errorThrown){  
-		    	        		  alert(error);  
-		    	        		  alert(errorThrown);  
-		        		  },  
-		    	    });
-		    	})
-		    	
-		    	$("#logoutBt").click(function(){
-		    		$.ajax({
-		    	        url: baseUrl + "/servicecenter/usercenter/logout",
-		    	        dataType: 'text',		
-		    	        success: function(msg,textStatus){
-	    	        				alert("登出成功");
-	    	        				location.reload();
-		    		        	},
-		            	error: function(XMLHttpRequest, error, errorThrown){  
-		    	        		  alert(error);  
-		    	        		  alert(errorThrown);  
-		        		  },  
-		    	    });
-		    	})
 		    	
 		    	$("#publishBt").click(function(){
 		    		var username = "${username}";
@@ -262,6 +182,8 @@
 		    	$(".post").click(function(){
 	    	        location.href = baseUrl + "/servicecenter/postcenter/getService/"+$("#serviceId", this).val();
 		    	})
+		    	
+		    	$("#service-nav").addClass("active");
 		    })
 	    </script>
 	</body>

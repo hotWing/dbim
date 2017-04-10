@@ -86,11 +86,8 @@
 					</div>
     			</div>
     			
-    			<div class="col-md-4">
-    				<a class="btn btn-primary" href="${request.getContextPath()}/dbim/${product.downloadDir}" >下载</a>
-    				
-    				<p style="margin-top:50px;margin-bottom:10px">想在Revit中直接下载使用此产品？</p>
-    				<a class="btn btn-primary" href="${request.getContextPath()}/dbim/download/plugin/FamilyManager.rar" >下载Revit插件</a>
+    			<div class="col-md-4" style="padding-top:80px">
+    				<a style="display:block; height:50px;line-height:36px;width:150px;margin:0 auto;font-size:20px" class="btn btn-primary" href="${request.getContextPath()}/dbim/${product.downloadDir}" >下载</a>
     			</div>
     		</div>
     	</div>
